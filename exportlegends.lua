@@ -417,11 +417,13 @@ function export_more_legends_xml()
             file:write("\t\t<child>"..link.."</child>\n")
         end
 
-        file:write("\t\t<claims>")
-        for xK, xVal in ipairs(entityV.claims.border.x) do
-            file:write(xVal..","..entityV.claims.border.y[xK].."|")
+        if #entityV.claims.border.x > 0 then
+            file:write("\t\t<claims>")
+            for xK, xVal in ipairs(entityV.claims.border.x) do
+                file:write(xVal..","..entityV.claims.border.y[xK].."|")
+            end
+            file:write("</claims>\n")
         end
-        file:write("</claims>\n")
 
         if (table_containskey(entityV,"occasion_info") and entityV.occasion_info ~= nil) then
             for occasionK, occasionV in pairs(entityV.occasion_info.occasions) do
